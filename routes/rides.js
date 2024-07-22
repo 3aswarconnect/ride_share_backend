@@ -16,7 +16,8 @@ router.post('/', async (req, res) => {
 // Get all rides
 router.get('/', async (req, res) => {
   try {
-    const rides = await Ride.find();
+    // Fetch rides and sort by createdAt in descending order
+    const rides = await Ride.find().sort({ createdAt: -1 });
     res.status(200).send(rides);
   } catch (error) {
     res.status(500).send(error);
